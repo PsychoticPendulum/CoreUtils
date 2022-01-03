@@ -9,7 +9,7 @@ int get_width() {
     int columns;
 
     GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    columns = csbi.srWindow.Right - csbi.srWindow.Left;
 
     return columns;
 }
@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
     int length = strlen(sym);
     int remainder = w % length - 1;
     for (int i = 0; i < lines; i++) {
-		for (int j = 0; j < w / strlen(sym) - 1; j++) {
+		for (int j = 0; j < w / strlen(sym); j++) {
 			printf(sym);
 		}
 		for (int k = 0; k < remainder; k++) {
