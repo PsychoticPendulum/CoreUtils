@@ -1,4 +1,4 @@
-NAME=temp
+NAME=dice
 CC=gcc
 CFLAGS=-Wall -std=c99
 LIBS=

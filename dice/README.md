@@ -1,2 +1,2 @@
-# Seperator
-Create a seperation in the terminal
+# Dice
+Simple tool to roll dice and calculate the average results
