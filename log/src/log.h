@@ -13,4 +13,4 @@
 #define ANSI_BOLD	"\x1b[1m"
 #define ANSI_RESET	"\x1b[0m"
 
-void Log(int type, char *msg, char *err);
+void Log(int type, char *msg);
