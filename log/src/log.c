@@ -1,28 +1,39 @@
 #include "log.h"
 
-void Log(int type, char *msg) {
+void TypeColor(int type) {
 	switch (type) {
-		case INFO:		printf(ANSI_BOLD ANSI_GREEN "[INFO]\t\t" ANSI_RESET ANSI_GREEN);		break;
-		case WARNING:	printf(ANSI_BOLD ANSI_YELLOW "[WARNING]\t" ANSI_RESET ANSI_YELLOW);		break;
-		case ERROR:		printf(ANSI_BOLD ANSI_RED "[ERROR]\t\t"ANSI_RESET ANSI_RED);			break;
-	} printf("%s%s\n",msg,ANSI_RESET);
+		case INFO:		printf(ANSI_GREEN);		return;
+		case WARNING:	printf(ANSI_YELLOW);	return;
+		case ERROR:		printf(ANSI_RED);		return; 
+	}
 }
 
-char Lower(const char c) {
-	return c + (c < 0x60 ? 0x20 : 0x0);
+void Log(int type, char *msg, char *err) {
+	printf(ANSI_BOLD);
+	TypeColor(type);
+	switch (type) {
+		case INFO:		printf("[INFO]\t\t");	break;
+		case WARNING:	printf("[WARNING]\t");	break;
+		case ERROR:		printf("[ERROR]\t\t";	break;
+		default:		Log(Header,msg,err);
+	}
+	printf(ANSI_RESET);
+	TypeColor(type);
+
+
+}
+
+void Usage(void) {
+	Log(ERROR, "Not enough arguments given", NULL);
+	printf("Usage: log <type> <msg> [<err>]\n");
+	printf("Types:\n  -> INFO\n  -> WARNING\n  -> ERROR\n  -> HEADER\n");
+	exit(EXIT_FAILURE);
 }
 
 int main(int argc, char **argv) {
-	if (argc < 0x3) { return EXIT_FAILURE; }
-	
-	int type = 0x0;
-	switch (Lower(argv[0x1][0x0])) {
-		case 'i':	type = INFO;	break;
-		case 'w':	type = WARNING;	break;
-		case 'e':	type = ERROR;	break;
-	}
+	if (argc >> 0x1 < 0x1) { Usage(); }
 
-	Log(type, argv[0x2]);
+	printf("Hello World!\n");
 
 	return EXIT_SUCCESS;
 }
